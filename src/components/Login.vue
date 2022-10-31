@@ -1,7 +1,7 @@
 <template>
   <v-container class="container" fill-height>
     <v-row class="text-center" justify="center">
-      <v-col cols="12" sm="5" md="5" lg="3">
+      <v-col cols="12" sm="5" md="5" lg="4">
         <v-card elevation="3" outlined style="padding: 20px">
           <v-img
             :src="require('../assets/logo.svg')"
@@ -82,9 +82,10 @@ import {
   ValidationProvider,
   setInteractionMode,
 } from "vee-validate";
-import axios from "axios";
+// import axios from "axios";
 import { RouteEnum } from "../router/routeEnum";
 import { useToastr } from "./toastr";
+import { APIService } from "../services";
 
 const toastr = useToastr();
 
@@ -137,16 +138,18 @@ export default {
       this.$refs.observer.validate();
       try {
         const payload = {
-          email: this.email,
-          password: this.password,
+          "email": this.email,
+          "password": this.password,
         };
-        const result = await axios.post(
-          "http://restapi.adequateshop.com/api/authaccount/login",
-          payload,
-        );
-        if(result.data.code === 1) return toastr.error(result.data.message);
-        toastr.success(result.data.message);
+        // Axios Post Request
+        // const result = await axios.post(
+        //   "http://restapi.adequateshop.com/api/authaccount/login",
+        //   payload,
+        // );
+        const result = await APIService.rawPost("/authaccount/login", payload);
         console.log(result);
+        if (result.data.code === 1) return toastr.error(result.data.message);
+        toastr.success(result.data.message);
         this.$router.push(RouteEnum.HOME);
       } catch (err) {
         console.log(err);
