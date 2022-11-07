@@ -11,6 +11,6 @@ export function createAxiosInstance() {
     axios.defaults.headers.common['Content-Type'] = 'application/json';
     // axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('Token')}`;
     axios.defaults.timeout = process.env.VUE_APP_API_TIMEOUT;
-
+    console.log("===== ", axios.defaults.baseURL)
     return axios;
 }
