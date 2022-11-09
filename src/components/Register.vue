@@ -44,13 +44,14 @@
               <validation-provider
                 v-slot="{ errors }"
                 name="Password"
-                rules="required|min:4|max:12"
+                rules="required|min:6|max:12"
               >
                 <v-text-field
                   v-model="password"
                   :counter="12"
                   :error-messages="errors"
                   label="Password"
+                  type="password"
                   required
                 ></v-text-field>
               </validation-provider>
@@ -58,26 +59,17 @@
               <validation-provider
                 v-slot="{ errors }"
                 name="Confirm Password"
-                rules="required|min:4|max:12"
+                rules="required|min:6|max:12"
               >
                 <v-text-field
                   v-model="confirmPassword"
                   :counter="12"
                   :error-messages="errors"
                   label="Confirm Password"
+                  type="password"
                   required
                 ></v-text-field>
               </validation-provider>
-              <!-- Checkbox -->
-              <v-checkbox
-                v-model="checkbox"
-                label="Keep me signed in"
-                color="dark"
-                value="dark"
-                hide-details
-                style="font-weight: bold"
-                class="mb-5"
-              ></v-checkbox>
 
               <v-btn color="primary" depressed elevation="2" type="submit">
                 Register
