@@ -129,8 +129,8 @@ export default {
       this.$refs.observer.validate();
       try {
         const payload = {
-          "email": this.email,
-          "password": this.password,
+          email: this.email,
+          password: this.password,
         };
         // Axios Post Request
         // const result = await axios.post(
@@ -140,6 +140,9 @@ export default {
         const result = await APIService.rawPost("/authaccount/login", payload);
         console.log(result);
         if (result.data.code === 1) return toastr.error(result.data.message);
+        // Set local storage... 
+        localStorage.setItem("user",  JSON.stringify(result.data.data));
+
         toastr.success(result.data.message);
         this.$router.push(RouteEnum.HOME);
       } catch (err) {
