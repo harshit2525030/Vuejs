@@ -156,25 +156,37 @@ export default {
   }),
 
   methods: {
+    // validate_password() {
+    //   var pass = document.getElementById("pass").value;
+    //   var confirm_pass = document.getElementById("confirm_pass").value;
+    //   if (pass != confirm_pass) {
+    //     toastr.success("☒ Use same password");
+    //   } else {
+    //     toastr.success("🗹 Password Matched");
+    //   }
+    // },
+
     async submit() {
       this.$refs.observer.validate();
       try {
         const payload = {
-          "name": this.name,
-          "email": this.email,
-          "password": this.password,
+          name: this.name,
+          email: this.email,
+          password: this.password,
         };
-        // Axios Post Request
-        // const result = await axios.post(
-        //   "http://restapi.adequateshop.com/api/authaccount/registration",
-        //   payload
-        // );
-
-        const result = await APIService.rawPost("/authaccount/registration", payload);
-        if(result.data.code === 1) return toastr.error(result.data.message);
-        toastr.success(result.data.message);
-        console.log(result);
-        this.$router.push(RouteEnum.LOGIN);
+        if (this.password == this.confirmPassword) {
+          const result = await APIService.rawPost(
+            "/authaccount/registration",
+            payload
+          );
+          if (result.data.code === 1) return toastr.error(result.data.message);
+          toastr.success(result.data.message);
+          console.log(result);
+          this.$router.push(RouteEnum.LOGIN);
+        }
+        else{
+          toastr.error("Password doesn't matched...");
+        }
       } catch (err) {
         console.log(err);
       }
