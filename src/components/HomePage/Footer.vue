@@ -1,6 +1,6 @@
 <template>
   <div class="footer">
-    <h1>Footer Component</h1>
+    <h1 class="heading">Footer Component</h1>
   </div>
 </template>
 
@@ -10,11 +10,15 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
+.v-footer {
+  padding: 0px !important;
+}
 .footer {
-  background-color: rgb(255, 230, 197);
-  height: 100px;
-  padding: 40px;
-  margin: 0px;
+  background-color: #27445C;
+  flex: 100%;
+}
+.heading{
+  color: azure;
 }
 </style>

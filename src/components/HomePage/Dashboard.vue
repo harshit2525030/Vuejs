@@ -13,11 +13,13 @@
 </template>
 
 <script>
+import {RouteEnum} from "../../router/routeEnum";
 export default {
   name: "DashboardComponent",
   methods: {
     removeUser() {
       localStorage.clear();
+      this.$router.push(RouteEnum.LOGIN);
     },
     getUserDetials() {
       let data = localStorage.getItem("user");
@@ -29,8 +31,4 @@ export default {
 </script>
 
 <style scoped>
-.products {
-  background-color: rgb(247, 197, 255);
-  padding: 40px;
-}
 </style>

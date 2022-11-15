@@ -1,10 +1,22 @@
 <template>
-  <div>
-    <!-- Components -->
-    <Header />
-    <Dashboard />
-    <Footer />
-  </div>
+  <v-main>
+    <v-app>
+      <v-app-bar app>
+        <Header />
+      </v-app-bar>
+
+      <v-main>
+        <v-container fluid>
+          <Dashboard />
+          <router-view></router-view>
+        </v-container>
+      </v-main>
+
+      <v-footer app>
+        <Footer />
+      </v-footer>
+    </v-app>
+  </v-main>
 </template>
 
 <script>
@@ -22,6 +34,8 @@ export default {
 };
 </script>
 
-<style scoped>
-
+<style>
+.v-toolbar__content {
+  padding: 0px !important;
+}
 </style>

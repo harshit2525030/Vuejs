@@ -132,11 +132,6 @@ export default {
           email: this.email,
           password: this.password,
         };
-        // Axios Post Request
-        // const result = await axios.post(
-        //   "http://restapi.adequateshop.com/api/authaccount/login",
-        //   payload,
-        // );
         const result = await APIService.rawPost("/authaccount/login", payload);
         console.log(result);
         if (result.data.code === 1) return toastr.error(result.data.message);
