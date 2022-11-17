@@ -12,7 +12,7 @@
         <li><a href="#">About</a></li>
         <li><a href="#">Category</a></li>
         <li><a href="#">Menu</a></li>
-        <li><a href="#">Testimonial</a></li>
+        <li><p style="font-style:italic; font-family: 'Times New Roman', Times, serif;">Hi {{ name }}</p></li>
         <li>
           <v-btn v-on:click="removeUser" rounded color="primary" dark>
             Log Out
@@ -25,13 +25,19 @@
 </template>
 
 <script>
-import {RouteEnum} from "../../router/routeEnum";
+import { RouteEnum } from "../../router/routeEnum";
 export default {
   name: "HeaderComponent",
-  created: function () {
+  data() {
+    return {
+      name: "Test",
+    };
+  },
+  created() {
     let data = localStorage.getItem("user");
     data = JSON.parse(data);
     console.log(data);
+    this.name = data.Name;
   },
   methods: {
     removeUser() {
@@ -43,7 +49,13 @@ export default {
 </script>
 
 <style>
-.navbar{
+.v-toolbar__content {
+  padding: 0px !important;
+  background: #27445c;
+  box-shadow: 0px 5px 10px 0px #aaa;
+  display: block;
+}
+.navbar {
   padding: 0px !important;
 }
 .navbar input[type="checkbox"],
@@ -54,16 +66,13 @@ export default {
 .container {
   max-width: 1200px;
   width: 90%;
-  margin: auto;
+  padding-top: 30px;
 }
 
 .navbar {
-  /* box-shadow: 0px 5px 10px 0px #aaa; */
-  position: fixed;
   width: 100%;
-  background: #27445C;
-  color: #000;
-  opacity: 0.85;
+  background: #27445c;
+  color: azure;
   z-index: 100;
 }
 
@@ -90,21 +99,17 @@ export default {
 }
 
 .navbar a {
-  color: #27445c;
+  color: azure;
   text-decoration: none;
   font-weight: 500;
   transition: color 0.3s ease-in-out;
 }
 
 .navbar a:hover {
-  color: #791111;
+  color: #19c324;
 }
 
 @media (max-width: 768px) {
-  .navbar {
-    opacity: 0.95;
-  }
-
   .navbar-container input[type="checkbox"],
   .navbar-container .hamburger-lines {
     display: block;
@@ -146,7 +151,7 @@ export default {
     height: 4px;
     width: 100%;
     border-radius: 10px;
-    background: #333;
+    background: aliceblue;
   }
 
   .navbar-container .hamburger-lines .line1 {
@@ -165,17 +170,15 @@ export default {
 
   .navbar .menu-items {
     padding-top: 100px;
-    background: #fff;
+    background: #27445c;
     height: 100vh;
-    max-width: 300px;
+    max-width: 270px;
     transform: translate(-150%);
     display: flex;
     flex-direction: column;
-    margin-left: -40px;
-    padding-left: 40px;
+    margin-left: -50px;
+    padding-left: 0px;
     transition: transform 0.5s ease-in-out;
-    box-shadow: 5px 0px 10px 0px #aaa;
-    overflow: scroll;
   }
 
   .navbar .menu-items li {
@@ -186,9 +189,10 @@ export default {
 
   .logo {
     position: absolute;
-    top: 10px;
-    right: 15px;
-    font-size: 2.5rem;
+    padding-top: 5px;
+    top: 4px;
+    right: 140px;
+    font-size: 2.1rem;
   }
 
   .navbar-container input[type="checkbox"]:checked ~ .menu-items {
